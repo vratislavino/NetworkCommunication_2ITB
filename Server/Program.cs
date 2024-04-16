@@ -15,9 +15,13 @@ namespace Server
 
             while (true)
             {
-                if (Console.ReadLine() == "start")
+                string cmd = Console.ReadLine();
+                if (cmd == "start")
                 {
                     StartServer();
+                } else if(cmd == "exit")
+                {
+                    break;
                 } else
                 {
                     Console.WriteLine("Neznámý příkaz");
@@ -60,6 +64,7 @@ namespace Server
                     } catch (Exception e)
                     {
                         await Console.Out.WriteLineAsync(e.Message);
+                        break;
                     }
                 }
             }

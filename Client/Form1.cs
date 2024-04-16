@@ -44,9 +44,21 @@ namespace Client
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        // DODÌLÁNO, PØÍŠTÌ SMAŽU :)
+        private async void button2_Click(object sender, EventArgs e)
         {
-
+            if (client != null)
+            {
+                string message = textBox1.Text.Trim();
+                if (writer == null)
+                {
+                    writer = new StreamWriter(client.GetStream()) { AutoFlush = true };
+                }
+                await writer.WriteLineAsync(message);
+                await writer.WriteLineAsync(":)");
+                listBox1.Items.Add("Sent: " + message);
+                textBox1.Clear();
+            }
         }
     }
 }
